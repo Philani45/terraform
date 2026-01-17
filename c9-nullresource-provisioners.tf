@@ -1,18 +1,20 @@
 # Create a Null resource and provisioners
-resource "null_resource" "name" {
+resource "null_resource" "PJRNull" {
     depends_on = [module.ec2_public]
 ## Connection block for provisioners to connect to EC2 instances
 connection {
-    type     = "ssh"
-    host     = aws_eip.bastion_eip.public_ip
-    user     ="ec2-user"
-    password = ""
-    private_key = file("private-key/Terraform-key1.pem")
-  }
+  type        = "ssh"
+  host        = aws_eip.bastion_eip.public_ip
+  user        = "ec2-user"
+  private_key = file("private_key/Terraform-key1.pem")
+  port        = 22
+}
+
+
 
 ## File Provisioner: copies the terraform-key.pem file to /tmp/terraform.pem
  provisioner "file" {
-    source      = "private-key/Terraform-key1.pem"
+    source      = "private_key/Terraform-key1.pem"
     destination = "/tmp/Terraform-key1.pem"
   }
 ## Remote Exec provisioner: Using remote-exec provisoner fix the private key permisssions
