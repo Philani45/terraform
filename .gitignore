@@ -8,3 +8,5 @@ terraform.tfstate.backup
 terraform_on_aws/terraform.tfstate.backup
 terraform_on_aws/.terraform
 terraform_on_aws/.terraform.lock.hclprivate_key/
+*.pem
+private_key/
